@@ -1,8 +1,9 @@
 from rest_framework import viewsets
 from .models import Subject, Teacher, Group
-from .models import Specialty, Lesson
+from .models import Specialty, Lesson, Exam
 from .serializers import SubjectSerializer, TeacherSerializer
 from .serializers import GroupSerializer, LessonSerializer
+from .serializers import ExamSerializer
 
 # Create your views here.
 class SpecialtyViewSet(viewsets.ModelViewSet):
@@ -17,6 +18,11 @@ class SpecialtyViewSet(viewsets.ModelViewSet):
     def groups_by_specialty_and_course(self, request, specialty_id, course):
         groups = Group.objects.filter(specialty_id=specialty_id, course=course)
         serializer = self.get_serializer(groups, many=True)
+        return Response(serializer.data)
+
+    def exams_for_group(self, request, group_id):
+        exams = Exam.objects.filter(group_id=group_id)
+        serializer = self.get_serializer(exams, many=True)
         return Response(serializer.data)
 
 
@@ -53,10 +59,17 @@ class GroupViewSet(viewsets.ModelViewSet):
         serializer = LessonSerializer(lessons, many=True)
         return Response(serializer.data)
 
+    def exams_for_teacher(self, request, teacher_id):
+        exams = Exam.objects.filter(teacher_id=teacher_id)
+        serializer = self.get_serializer(exams, many=True)
+        return Response(serializer.data)
+
 
 class LessonViewSet(viewsets.ModelViewSet):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
 
-    
 
+class ExamViewSet(viewsets.ModelViewSet):
+	queryset = Exam.objects.all()
+	serializer_class = ExamSerializer

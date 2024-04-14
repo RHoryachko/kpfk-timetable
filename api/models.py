@@ -72,3 +72,20 @@ class Lesson(models.Model):
     class Meta:
         verbose_name = "Заняття"
         verbose_name_plural = "Заняття"
+
+
+class Exam(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    room = models.CharField(max_length=20)
+    lesson_number = models.IntegerField(choices=LESSON_NUMBER_CHOICES)
+    date = models.DateField()
+
+    def __str__(self):
+        return f"{self.subject} - {self.teacher} ({self.group}) - Room: {self.room},\
+                    Lesson Lesson {self.lesson_number}, Date: {self.date}"
+
+    class Meta:
+        verbose_name = "Екзамен"
+        verbose_name_plural = "Екзамени"

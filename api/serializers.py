@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Subject, Teacher, Group
-from . model import Specialty, Lesson
+from . model import Specialty, Lesson, Exam
 
 
 class SpecialtySerializer(serializers.ModelSerializer):
@@ -30,4 +30,10 @@ class GroupSerializer(serializers.ModelSerializer):
 class LessonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lesson
+        fields = '__all__'
+
+
+class ExamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Exam
         fields = '__all__'
