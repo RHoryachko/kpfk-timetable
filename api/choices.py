@@ -13,8 +13,8 @@ SUBGROUP_CHOICES = [
 ]
 
 NUMERATOR_CHOICES = [
-    ('чисельник', 'Чисельник'),
-    ('знаменник', 'Знаменник'),
+    ('numerator', 'Numerator'),
+    ('denominator', 'Denominator'),
 ]
 
 LESSON_NUMBER_CHOICES = [

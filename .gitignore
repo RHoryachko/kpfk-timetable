@@ -40,3 +40,7 @@ MyVenv/
 .local/
 settings.py
 kpfk_timetable/settings.py
+
+db.sqlite3
+config.ini
+config.env

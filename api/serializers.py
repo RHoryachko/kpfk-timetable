@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Subject, Teacher, Group
-from . model import Specialty, Lesson, Exam
+from . models import Specialty, Lesson, Exam
 
 
 class SpecialtySerializer(serializers.ModelSerializer):
